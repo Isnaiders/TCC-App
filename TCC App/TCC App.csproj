@@ -48,4 +48,42 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="GoogleMaps" Version="1.0.1" />
+	  <PackageReference Include="GoogleMaps.LocationServices" Version="1.2.0.5" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
+	  <PackageReference Include="Xamarin.Firebase.Auth">
+	    <Version>121.1.0.1</Version>
+	  </PackageReference>
+	  <PackageReference Include="Xamarin.Firebase.Common">
+	    <Version>120.2.0.1</Version>
+	  </PackageReference>
+	  <PackageReference Include="Xamarin.Firebase.Database">
+	    <Version>120.1.0.1</Version>
+	  </PackageReference>
+	  <PackageReference Include="Xamarin.Firebase.Database.Connection">
+	    <Version>116.0.2.8</Version>
+	  </PackageReference>
+	  <PackageReference Include="Xamarin.Firebase.Messaging">
+	    <Version>123.1.1.1</Version>
+	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="ViewModels\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <GoogleServicesJson Include="Platforms\Android\google-services.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Home.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>
