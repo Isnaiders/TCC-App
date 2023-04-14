@@ -18,7 +18,7 @@ public partial class MainPage : ContentPage
 
     private async void btnSubmit_Clicked(object sender, EventArgs e)
     {
-        if (txtMobileNumber.Text.Lengh > 0)
+        if (txtMobileNumber.Text.Length > 0)
         {
             var isValidMobile = await _authenticationService.AuthenticationMobile(txtMobileNumber.Text);
             if (isValidMobile)
@@ -39,7 +39,7 @@ public partial class MainPage : ContentPage
 
     private async void btnVerifyCode_Clicked(object sender, EventArgs e)
     {
-        if (txtCode.Text.Lengh > 0)
+        if (txtCode.Text.Length > 0)
         {
             var isValidCode = await _authenticationService.ValidateOTP(txtCode.Text);
             if (isValidCode)

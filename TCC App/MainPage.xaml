@@ -7,7 +7,7 @@
              x:Class="TCC_App.MainPage">
 
     <ContentPage.Content>
-        <Grid
+        <!--<Grid
             BackgroundColor="#1C375C"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand">
@@ -130,7 +130,44 @@
                         Text="Don't have an account? Sign up here" />
                 </Grid>
             </Frame>
-        </Grid>
+        </Grid>-->
+        <ScrollView>
+            <VerticalStackLayout
+                Spacing="25"
+                Padding="30"
+                VerticalOptions="Center">
+
+
+                <Image
+                    Source="dotnet_bot.png"
+                    SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                    HeightRequest="200"
+                    HorizontalOptions="Center"/>
+                <Label
+                    Text="Login"
+                    SemanticProperties.HeadingLevel="Level1"
+                    FontSize="32"
+                    HorizontalOptions="Center"/>
+
+                <VerticalStackLayout x:Name="pnlMobileInfo">
+                    <Entry x:Name="txtMobileNumber"/>
+                    <Button
+                    x:Name="btnSubmit"
+                    Text="Efetuar Login"
+                    Clicked="btnSubmit_Clicked"
+                    HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout x:Name="pnlMobileVerification">
+                    <Entry x:Name="txtCode"/>
+                    <Button
+                    x:Name="btnVerifyCode"
+                    Text="Verificar o código"
+                    Clicked="btnVerifyCode_Clicked"
+                    HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
 
