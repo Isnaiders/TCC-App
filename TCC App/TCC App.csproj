@@ -48,4 +48,37 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <AndroidResource Remove="ViewModels\**" />
+	  <Compile Remove="ViewModels\**" />
+	  <EmbeddedResource Remove="ViewModels\**" />
+	  <MauiCss Remove="ViewModels\**" />
+	  <MauiXaml Remove="ViewModels\**" />
+	  <None Remove="ViewModels\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="GoogleMaps" Version="1.0.1" />
+	  <PackageReference Include="GoogleMaps.LocationServices" Version="1.2.0.5" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Controllers\" />
+	  <Folder Include="Platforms\Android\Services\" />
+	  <Folder Include="Platforms\iOS\Services\" />
+	  <Folder Include="Services\" />
+	  <Folder Include="Views\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <GoogleServicesJson Include="Platforms\Android\google-services.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\Home.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>
