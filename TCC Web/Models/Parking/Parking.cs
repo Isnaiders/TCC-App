@@ -1,4 +1,5 @@
 ﻿using TCC_Web.Models.Base;
+using TCC_Web.Models.Enum.Parking;
 
 namespace TCC_Web.Models.Parking
 {
@@ -8,5 +9,6 @@ namespace TCC_Web.Models.Parking
         public string Address { get; set; }
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
+        public ParkingLocationType LocationType { get; set; }
     }
 }
