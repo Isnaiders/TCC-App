@@ -3,6 +3,4 @@
 	<application android:allowBackup="true" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true"></application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<meta-data android:name="com.google.android.maps.v3.API_KEY" android:value="AIzaSyAd2xyxECeldukvPhSMZWquHGzk9ZNQL58" />
-	<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 </manifest>
