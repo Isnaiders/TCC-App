@@ -4,8 +4,8 @@ namespace TCC_Web.Models.Enum.Parking
 {
     public enum OpeningDay : int
     {
-        [Display(Name = "Desconhecido")]
-        Unknown = 0,
+        [Display(Name = "")]
+        Desconhecido = 0,
         [Display(Name = "Domingo")]
         Sunday = 1,
         [Display(Name = "Segunda-Feira")]
