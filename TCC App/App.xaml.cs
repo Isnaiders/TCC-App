@@ -1,4 +1,7 @@
-﻿namespace TCC_App;
+﻿using TCC_App.Models.User;
+using TCC_App.Views;
+
+namespace TCC_App;
 
 public partial class App : Application
 {
@@ -6,6 +9,15 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new AppShell();
+		MainPage = new LoginView();
 	}
+
+    protected override void OnStart()
+    {
+        MessagingCenter.Subscribe<User>(this, "SuccessfulLogin",
+        (user) =>
+        {
+            MainPage = new NavigationPage(new Home());
+        });
+    }
 }
