@@ -8,36 +8,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TCC_API.Models.Entities
 {
-    public partial class User
+    public partial class User : Base
     {
         public User()
         {
             Authentication = new HashSet<Authentication>();
         }
 
-        [Key]
-        public Guid UserId { get; set; }
         [Required]
         [StringLength(255)]
         [Unicode(false)]
         public string Name { get; set; }
+
         public int Type { get; set; }
+
         [Required]
         [StringLength(255)]
         [Unicode(false)]
         public string Email { get; set; }
-        public Guid BirthDate { get; set; }
+
+        public DateTime BirthDate { get; set; }
+
         [Required]
         [StringLength(255)]
         [Unicode(false)]
         public string LicenseDrive { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime WhenCreated { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? WhenUpdated { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? WhenRemoved { get; set; }
-        public int SystemStatus { get; set; }
 
         [InverseProperty("User")]
         public virtual ICollection<Authentication> Authentication { get; set; }

@@ -47,7 +47,7 @@ namespace TCC_API.Models.Entities
 
             modelBuilder.Entity<Parking>(entity =>
             {
-                entity.Property(e => e.ParkingId).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<ParkingOpeningHour>(entity =>
@@ -108,7 +108,7 @@ namespace TCC_API.Models.Entities
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.UserId).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<Vacancy>(entity =>

@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using TCC_API.Interfaces;
 using TCC_API.Models.Entities;
+using TCC_API.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IParkingRepository, ParkingRepository>();
 
 var app = builder.Build();
 

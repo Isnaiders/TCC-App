@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TCC_API.Models.Entities
 {
-    public partial class Parking
+    public partial class Parking : Base
     {
         public Parking()
         {
@@ -18,29 +18,25 @@ namespace TCC_API.Models.Entities
             Vacancy = new HashSet<Vacancy>();
         }
 
-        [Key]
-        public Guid ParkingId { get; set; }
         [Required]
         [StringLength(255)]
         [Unicode(false)]
         public string Name { get; set; }
+
         [Required]
         [StringLength(255)]
         [Unicode(false)]
         public string Address { get; set; }
+
         public int Type { get; set; }
+
         [Column(TypeName = "decimal(18, 0)")]
         public decimal Latitude { get; set; }
+
         [Column(TypeName = "decimal(18, 0)")]
         public decimal Longitude { get; set; }
+
         public int LocationType { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime WhenCreated { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? WhenUpdated { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? WhenRemoved { get; set; }
-        public int SystemStatus { get; set; }
 
         [InverseProperty("Parking")]
         public virtual ICollection<ParkingOpeningHour> ParkingOpeningHour { get; set; }
