@@ -5,9 +5,9 @@ namespace TCC_Web.Models.Parking
 {
     public class ParkingOpeningHour : BaseModel
 	{
-        public DateTime OpeningHour { get; set; }
-        public DateTime ClosingHour { get; set; }
-        public OpeningDay Day { get; set; }
         public Guid ParkingId { get; set; }
+        public OpeningDay Day { get; set; }
+        public DateTime OpeningTime { get; set; }
+        public DateTime ClosingTime { get; set; }
     }
 }

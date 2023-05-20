@@ -11,7 +11,7 @@
 @{
     var pageShortTitle = "Novo Estacionamento";
     //var pageFullTitle = string.Format("{0}: {1}", Model.CustomerInfo.DisplayName, pageShortTitle);
-    var pageFullTitle = string.Format("{0}: {1}", "Cliente", pageShortTitle);
+    var pageFullTitle = string.Format("{0}: {1}", "Estacionamento", pageShortTitle);
 
     ViewBag.Title = pageFullTitle;
 }
@@ -37,25 +37,24 @@
                             @Html.ValidationMessageFor(m => m.Name, "", new { Class = "text-danger" })
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="form-group">
                             <label>Endereço *</label>
                             @Html.TextBoxFor(m => m.Address, new { Class = "form-control", Placeholder = "Endereço" })
                             @Html.ValidationMessageFor(m => m.Address, "", new { Class = "text-danger" })
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-4">
                         <div class="form-group">
-                            <label>Latitude *</label>
-                            @Html.TextBoxFor(m => m.Latitude, new { Class = "form-control", Placeholder = "Latitude" })
-                            @Html.ValidationMessageFor(m => m.Latitude, "", new { Class = "text-danger" })
+                            <label>Número *</label>
+                            @Html.TextBoxFor(m => m.AddressNumber, new { Class = "form-control", Placeholder = "Número" })
+                            @Html.ValidationMessageFor(m => m.AddressNumber, "", new { Class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label>Longitude *</label>
-                            @Html.TextBoxFor(m => m.Longitude, new { Class = "form-control", Placeholder = "Longitude" })
-                            @Html.ValidationMessageFor(m => m.Longitude, "", new { Class = "text-danger" })
+                            <label>Complemento</label>
+                            @Html.TextBoxFor(m => m.Complement, new { Class = "form-control", Placeholder = "Complemento" })
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -73,7 +72,7 @@
                 </div>
             </div>
         </div>
-        <div class="ibox-content load">
+        <div class="ibox" style="margin-top: 10px">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="pull-right">
