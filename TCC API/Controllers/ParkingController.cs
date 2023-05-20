@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using TCC_API.Interfaces;
+using TCC_API.Models.DTOs;
 using TCC_API.Models.Entities;
 
 namespace TCC_API.Controllers
@@ -8,17 +10,21 @@ namespace TCC_API.Controllers
     [Route("[controller]")]
     public class ParkingController : Controller
     {
+        public readonly IMapper _mapper;
         public readonly IParkingRepository _parkingRepository;
 
-        public ParkingController(IParkingRepository parkingRepository)
+        public ParkingController(IMapper mapper, IParkingRepository parkingRepository)
         {
+            _mapper = mapper;
             _parkingRepository = parkingRepository;
         }
 
         [HttpGet("GetAll")]
-        public async Task<ActionResult<IEnumerable<Parking>>> GetAllParking()
+        public async Task<ActionResult<IEnumerable<ParkingDetailedDTO>>> GetAllParking()
         {
-            return Ok(await _parkingRepository.GetAll());
+            var parkingDBs = await _parkingRepository.GetAll();
+            var parkingDTOs = _mapper.Map<IEnumerable<ParkingDetailedDTO>>(parkingDBs);
+            return Ok(parkingDTOs);
         }
 
         [HttpGet("GetById/{parkingId}")]
@@ -31,33 +37,43 @@ namespace TCC_API.Controllers
                 return NotFound("Estacionamento não encontrado.");
             }
 
-            return Ok(parkingDB);
+            var parkingDTO = _mapper.Map<User>(parkingDB);
+            return Ok(parkingDTO);
         }
 
         [HttpPost("Add")]
-        public async Task<ActionResult> AddParking(Parking parking)
+        public async Task<ActionResult> AddParking(ParkingDetailedDTO parkingDTO)
         {
-            _parkingRepository.Add(parking);
+            var parkingDB = _mapper.Map<Parking>(parkingDTO);
+            _parkingRepository.Add(parkingDB);
 
             if (await _parkingRepository.SaveAllAsync())
             {
                 return Ok("Estacionamento cadastrado com sucesso!");
             }
 
-            return BadRequest("Ocorreu um erro ao salvar o estacionamento");
+            return BadRequest("Ocorreu um erro ao salvar o estacionamento.");
         }
 
         [HttpPut("Update")]
-        public async Task<ActionResult> UpdateParking(Parking parking)
+        public async Task<ActionResult> UpdateParking(ParkingDetailedDTO parkingDTO)
         {
-            _parkingRepository.Update(parking);
+            var exists = _parkingRepository.Exists(parkingDTO.Id);
+
+            if (!exists)
+            {
+                return BadRequest("Estacionamento não encontrado.");
+            }
+
+            var parkingDB = _mapper.Map<Parking>(parkingDTO);
+            _parkingRepository.Update(parkingDB);
 
             if (await _parkingRepository.SaveAllAsync())
             {
                 return Ok("Estacionamento alterado com sucesso!");
             }
 
-            return BadRequest("Ocorreu um erro ao alterar o estacionamento");
+            return BadRequest("Ocorreu um erro ao alterar o estacionamento.");
         }
 
         [HttpDelete("Remove/{parkingId}")]
@@ -75,7 +91,7 @@ namespace TCC_API.Controllers
                 return Ok("Estacionamento foi removido com sucesso!");
             }
 
-            return BadRequest("Ocorreu um erro ao remover o estacionamento");
+            return BadRequest("Ocorreu um erro ao remover o estacionamento.");
         }
     }
 }

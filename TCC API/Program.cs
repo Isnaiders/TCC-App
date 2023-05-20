@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using TCC_API.Interfaces;
 using TCC_API.Models.Entities;
+using TCC_API.Models.Mappings;
 using TCC_API.Repositories;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,8 +16,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IParkingRepository, ParkingRepository>();
+
+// Auto Mapper
+builder.Services.AddAutoMapper(typeof(EntitiesToDTOMappingProfile));
 
 var app = builder.Build();
 

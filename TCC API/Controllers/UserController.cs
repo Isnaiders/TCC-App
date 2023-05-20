@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using TCC_API.Interfaces;
+using TCC_API.Models.DTOs;
 using TCC_API.Models.Entities;
+using TCC_API.Repositories;
 
 namespace TCC_API.Controllers
 {
@@ -8,49 +11,70 @@ namespace TCC_API.Controllers
     [Route("[controller]")]
     public class UserController : Controller
     {
+        public readonly IMapper _mapper;
         public readonly IUserRepository _userRepository;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IMapper mapper, IUserRepository userRepository)
         {
+            _mapper = mapper;
             _userRepository = userRepository;
         }
 
         [HttpGet("GetAll")]
-        public async Task<ActionResult<IEnumerable<User>>> GetAllUser()
+        public async Task<ActionResult<IEnumerable<UserDetailedDTO>>> GetAllUser()
         {
-            return Ok(await _userRepository.GetAll());
+            var userDBs = await _userRepository.GetAll();
+            var userDTOs = _mapper.Map<IEnumerable<UserDetailedDTO>>(userDBs);
+            return Ok(userDTOs);
         }
 
-        [HttpGet("GetById")]
+        [HttpGet("GetById/{userId}")]
         public async Task<ActionResult<User>> GetUserById(Guid userId)
         {
-            return Ok(await _userRepository.GetById(userId));
+            var userDB = await _userRepository.GetById(userId);
+
+            if (userDB == null)
+            {
+                return NotFound("Usuário não encontrado.");
+            }
+
+            var userDTO = _mapper.Map<User>(userDB);
+            return Ok(userDTO);
         }
 
         [HttpPost("Add")]
-        public async Task<ActionResult> AddUser(User user)
+        public async Task<ActionResult> AddUser(UserDetailedDTO userDTO)
         {
-            _userRepository.Add(user);
+            var userDB = _mapper.Map<User>(userDTO);
+            _userRepository.Add(userDB);
 
             if (await _userRepository.SaveAllAsync())
             {
                 return Ok("Usuário cadastrado com sucesso!");
             }
 
-            return BadRequest("Ocorreu um erro ao salvar o usuário");
+            return BadRequest("Ocorreu um erro ao salvar o usuário.");
         }
 
         [HttpPut("Update")]
-        public async Task<ActionResult> UpdateUser(User user)
+        public async Task<ActionResult> UpdateUser(UserDetailedDTO userDTO)
         {
-            _userRepository.Update(user);
+            var exists = _userRepository.Exists(userDTO.Id);
+
+            if (!exists)
+            {
+                return BadRequest("Usuário não encontrado.");
+            }
+
+            var userDB = _mapper.Map<User>(userDTO);
+            _userRepository.Update(userDB);
 
             if (await _userRepository.SaveAllAsync())
             {
                 return Ok("Usuário alterado com sucesso!");
             }
 
-            return BadRequest("Ocorreu um erro ao alterar o usuário");
+            return BadRequest("Ocorreu um erro ao alterar o usuário.");
         }
 
         [HttpDelete("Remove/{userId}")]
@@ -68,7 +92,7 @@ namespace TCC_API.Controllers
                 return Ok("Usuário foi removido com sucesso!");
             }
 
-            return BadRequest("Ocorreu um erro ao remover o usuário");
+            return BadRequest("Ocorreu um erro ao remover o usuário.");
         }
     }
 }

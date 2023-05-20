@@ -55,5 +55,10 @@ namespace TCC_API.Repositories
         {
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public bool Exists(Guid userId)
+        {
+            return _context.User.Find(userId) != null;
+        }
     }
 }
