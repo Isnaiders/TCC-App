@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TCC_Web.Models.Car;
 using TCC_Web.Models.Parking;
 
 namespace TCC_Web.Controllers
@@ -15,13 +16,58 @@ namespace TCC_Web.Controllers
         public IActionResult ParkingAdd()
         {
             var model = new Parking();
-            //ViewData["Title"] = "Filtragem";
 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult ParkingAdd(Parking model)
+        public IActionResult Add(Parking model)
+        {
+            return View(model);
+        }
+
+        public IActionResult Update()
+        {
+            var model = new Parking();
+            model.Name = "Estacionamento Shopping Aricanduva";
+            model.Address = "Rua Silvia";
+            model.AddressNumber = 110;
+            model.LocationType = Models.Enum.Parking.ParkingLocationType.Shopping;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult ParkingUpdate(Parking model)
+        {
+            return View(model);
+        }
+
+        public IActionResult CarAdd()
+        {
+            var model = new Car();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult CarAdd(Car model)
+        {
+            return View(model);
+        }
+
+        public IActionResult CarUpdate()
+        {
+            var model = new Car();
+            model.Name = "Carro Passeio";
+            model.Model = "Porsche Taycan";
+            model.Plate = "1234-ABC";
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult CarUpdate(Car model)
         {
             return View(model);
         }
