@@ -1,6 +1,10 @@
+using TCC_Web.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<ApiService>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

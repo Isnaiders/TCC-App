@@ -1,16 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using TCC_Web.Models.Car;
 using TCC_Web.Models.Parking;
+using TCC_Web.Services;
 
 namespace TCC_Web.Controllers
 {
     public class ParkingController : Controller
     {
         private readonly ILogger<ParkingController> _logger;
+        private readonly ApiService _apiService;
 
-        public ParkingController(ILogger<ParkingController> logger)
+        public ParkingController(ILogger<ParkingController> logger, ApiService apiService)
         {
             _logger = logger;
+            _apiService = apiService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            string apiUrl = "https://localhost:7094/Parking/GetAll";
+            string apiData = await _apiService.GetApiData(apiUrl);
+
+            return View();
         }
 
         public IActionResult ParkingAdd()
@@ -26,13 +38,13 @@ namespace TCC_Web.Controllers
             return View(model);
         }
 
-        public IActionResult Update()
+        public async Task<IActionResult> Update()
         {
-            var model = new Parking();
-            model.Name = "Estacionamento Shopping Aricanduva";
-            model.Address = "Rua Silvia";
-            model.AddressNumber = 110;
-            model.LocationType = Models.Enum.Parking.ParkingLocationType.Shopping;
+            string apiUrl = "https://localhost:7094/Parking/GetById/" + "A033AD88-5FE7-40C1-B52B-C3C0C625D59E";
+            string apiData = await _apiService.GetApiData(apiUrl);
+
+            // Desserializar os dados da API em um objeto
+            Parking model = JsonConvert.DeserializeObject<Parking>(apiData);
 
             return View(model);
         }

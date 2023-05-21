@@ -37,7 +37,7 @@ namespace TCC_API.Controllers
                 return NotFound("Estacionamento não encontrado.");
             }
 
-            var parkingDTO = _mapper.Map<User>(parkingDB);
+            var parkingDTO = _mapper.Map<Parking>(parkingDB);
             return Ok(parkingDTO);
         }
 
