@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
-using TCC_API.Interfaces;
+using TCC_API.Interfaces.Repositories;
 using TCC_API.Models.Entities;
+using TCC_API.Models.Entities.Parking;
 
 namespace TCC_API.Repositories
 {

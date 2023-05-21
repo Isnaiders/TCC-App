@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using TCC_Web.Models;
-using TCC_Web.Models.Parking;
 
 namespace TCC_Web.Controllers
 {

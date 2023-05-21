@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
-namespace TCC_App.Models.Enum.Base
+namespace TCC_API.Models.Enums.Base
 {
     public enum SystemStatusType : int
     {

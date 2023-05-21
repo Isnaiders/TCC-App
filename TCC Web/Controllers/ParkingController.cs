@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using TCC_Web.Models.Car;
-using TCC_Web.Models.Parking;
+using TCC_Web.Models.Entities.Parking;
+using TCC_Web.Models.Entities.User;
 using TCC_Web.Services;
 
 namespace TCC_Web.Controllers

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using TCC_API.Interfaces;
-using TCC_API.Models.DTOs;
-using TCC_API.Models.Entities;
+using TCC_API.Interfaces.Repositories;
+using TCC_API.Models.DTOs.User;
+using TCC_API.Models.Entities.User;
 using TCC_API.Repositories;
 
 namespace TCC_API.Controllers

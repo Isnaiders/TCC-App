@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using TCC_API.Interfaces;
+using TCC_API.Interfaces.Repositories;
 using TCC_API.Models.Entities;
 using TCC_API.Models.Mappings;
 using TCC_API.Repositories;

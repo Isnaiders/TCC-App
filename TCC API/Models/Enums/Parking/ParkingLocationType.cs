@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
-namespace TCC_App.Models.Enum.Parking
+namespace TCC_API.Models.Enums.Parking
 {
     public enum ParkingLocationType : int
     {
