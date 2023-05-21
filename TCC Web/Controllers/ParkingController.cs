@@ -25,7 +25,12 @@ namespace TCC_Web.Controllers
             return View();
         }
 
-        public IActionResult ParkingAdd()
+        public IActionResult View()
+        {
+            return View();
+        }
+
+        public IActionResult Add()
         {
             var model = new Parking();
 
