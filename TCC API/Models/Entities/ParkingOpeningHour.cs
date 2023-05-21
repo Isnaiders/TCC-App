@@ -9,23 +9,14 @@ using Microsoft.EntityFrameworkCore;
 namespace TCC_API.Models.Entities
 {
     [Index("ParkingId", Name = "IX_ParkingId")]
-    public partial class ParkingOpeningHour
+    public partial class ParkingOpeningHour : Base
     {
-        [Key]
-        public Guid ParkingOpeningHourId { get; set; }
         public Guid ParkingId { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime OpeningTime { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime ClosingTime { get; set; }
         public int Day { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime WhenCreated { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? WhenUpdated { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? WhenRemoved { get; set; }
-        public int SystemStatus { get; set; }
 
         [ForeignKey("ParkingId")]
         [InverseProperty("ParkingOpeningHour")]

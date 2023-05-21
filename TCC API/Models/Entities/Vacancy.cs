@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace TCC_API.Models.Entities
 {
     [Index("ParkingId", Name = "IX_ParkingId")]
-    public partial class Vacancy
+    public partial class Vacancy : Base
     {
         public Vacancy()
         {
@@ -17,8 +17,6 @@ namespace TCC_API.Models.Entities
             ParkingReservationHistory = new HashSet<ParkingReservationHistory>();
         }
 
-        [Key]
-        public Guid VacancyId { get; set; }
         public Guid ParkingId { get; set; }
         [Required]
         [StringLength(255)]
@@ -26,13 +24,6 @@ namespace TCC_API.Models.Entities
         public string Name { get; set; }
         public bool Busy { get; set; }
         public int Type { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime WhenCreated { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? WhenUpdated { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? WhenRemoved { get; set; }
-        public int SystemStatus { get; set; }
 
         [ForeignKey("ParkingId")]
         [InverseProperty("Vacancy")]

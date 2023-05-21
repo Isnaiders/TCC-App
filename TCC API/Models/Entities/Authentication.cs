@@ -9,10 +9,8 @@ using Microsoft.EntityFrameworkCore;
 namespace TCC_API.Models.Entities
 {
     [Index("UserId", Name = "IX_UserId")]
-    public partial class Authentication
+    public partial class Authentication : Base
     {
-        [Key]
-        public Guid AuthenticationId { get; set; }
         public Guid UserId { get; set; }
         [Required]
         [StringLength(255)]
@@ -22,13 +20,6 @@ namespace TCC_API.Models.Entities
         [StringLength(255)]
         [Unicode(false)]
         public string Password { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime WhenCreated { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? WhenUpdated { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? WhenRemoved { get; set; }
-        public int SystemStatus { get; set; }
 
         [ForeignKey("UserId")]
         [InverseProperty("Authentication")]

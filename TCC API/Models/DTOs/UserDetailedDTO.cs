@@ -1,19 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
-using TCC_App.Models.Enum.Base;
 
 namespace TCC_API.Models.DTOs
 {
-    public class UserDetailedDTO
+    public class UserDetailedDTO : BaseDTO
     {
-        #region Base Properties
-        public Guid Id { get; set; }
-        public DateTime WhenCreated { get; set; }
-        public DateTime? WhenUpdated { get; set; }
-        public DateTime? WhenRemoved { get; set; }
-        public SystemStatusType SystemStatus { get; set; }
-        #endregion
-
         [Required]
         [StringLength(255)]
         [Unicode(false)]

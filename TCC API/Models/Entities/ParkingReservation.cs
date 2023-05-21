@@ -11,10 +11,8 @@ namespace TCC_API.Models.Entities
     [Index("CarId", Name = "IX_CarId")]
     [Index("ParkingId", Name = "IX_ParkingId")]
     [Index("VacancyId", Name = "IX_VacancyId")]
-    public partial class ParkingReservation
+    public partial class ParkingReservation : Base
     {
-        [Key]
-        public Guid ParkingReservationId { get; set; }
         public Guid ParkingId { get; set; }
         public Guid? VacancyId { get; set; }
         public Guid CarId { get; set; }
@@ -25,13 +23,6 @@ namespace TCC_API.Models.Entities
         public DateTime? CommittedStartDate { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? CommittedEndDate { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime WhenCreated { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? WhenUpdated { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? WhenRemoved { get; set; }
-        public int SystemStatus { get; set; }
 
         [ForeignKey("CarId")]
         [InverseProperty("ParkingReservation")]

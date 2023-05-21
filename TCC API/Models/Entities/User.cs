@@ -19,16 +19,13 @@ namespace TCC_API.Models.Entities
         [StringLength(255)]
         [Unicode(false)]
         public string Name { get; set; }
-
         public int Type { get; set; }
-
         [Required]
         [StringLength(255)]
         [Unicode(false)]
         public string Email { get; set; }
-
+        [Column(TypeName = "datetime")]
         public DateTime BirthDate { get; set; }
-
         [Required]
         [StringLength(255)]
         [Unicode(false)]

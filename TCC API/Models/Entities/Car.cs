@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TCC_API.Models.Entities
 {
-    public partial class Car
+    public partial class Car : Base
     {
         public Car()
         {
@@ -16,8 +16,6 @@ namespace TCC_API.Models.Entities
             ParkingReservationHistory = new HashSet<ParkingReservationHistory>();
         }
 
-        [Key]
-        public Guid CarId { get; set; }
         public Guid UserId { get; set; }
         [Required]
         [StringLength(255)]
@@ -31,13 +29,6 @@ namespace TCC_API.Models.Entities
         [StringLength(255)]
         [Unicode(false)]
         public string Model { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime WhenCreated { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? WhenUpdated { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? WhenRemoved { get; set; }
-        public int SystemStatus { get; set; }
 
         [InverseProperty("Car")]
         public virtual ICollection<ParkingReservation> ParkingReservation { get; set; }

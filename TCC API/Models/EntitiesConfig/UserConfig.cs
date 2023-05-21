@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TCC_API.Models.Entities;
 
-namespace TCC_API.Models.EntityConfig
+namespace TCC_API.Models.EntitiesConfig
 {
     public class UserConfig : IEntityTypeConfiguration<User>
     {
