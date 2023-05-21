@@ -28,8 +28,6 @@ namespace TCC_API.Models.Entities
         [Unicode(false)]
         public string Address { get; set; }
 
-        public int Type { get; set; }
-
         [Column(TypeName = "decimal(18, 0)")]
         public decimal Latitude { get; set; }
 
