@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using TCC_API.Models.EntityConfig;
 
 namespace TCC_API.Models.Entities
 {
@@ -45,10 +46,7 @@ namespace TCC_API.Models.Entities
                 entity.Property(e => e.CarId).ValueGeneratedNever();
             });
 
-            modelBuilder.Entity<Parking>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-            });
+            modelBuilder.ApplyConfiguration(new ParkingConfig());
 
             modelBuilder.Entity<ParkingOpeningHour>(entity =>
             {
@@ -106,10 +104,7 @@ namespace TCC_API.Models.Entities
                     .HasConstraintName("FK_dbo.ParkingReservationHistory_dbo.Vacancy_VacancyId");
             });
 
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-            });
+            modelBuilder.ApplyConfiguration(new UserConfig());
 
             modelBuilder.Entity<Vacancy>(entity =>
             {

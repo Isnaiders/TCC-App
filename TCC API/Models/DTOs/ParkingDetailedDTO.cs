@@ -25,8 +25,6 @@ namespace TCC_API.Models.DTOs
         [Unicode(false)]
         public string Address { get; set; }
 
-        public int Type { get; set; }
-
         public ParkingLocationType LocationType { get; set; }
 
         public decimal Latitude { get; set; }
