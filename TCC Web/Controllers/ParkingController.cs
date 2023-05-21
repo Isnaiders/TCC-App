@@ -25,9 +25,15 @@ namespace TCC_Web.Controllers
             return View();
         }
 
-        public IActionResult View()
+        public async Task<IActionResult> View(Guid id)
         {
-            return View();
+            string apiUrl = "https://localhost:7094/Parking/GetById/" + id.ToString();
+            string apiData = await _apiService.GetApiData(apiUrl);
+
+            // Desserializar os dados da API em um objeto
+            Parking model = JsonConvert.DeserializeObject<Parking>(apiData);
+
+            return View(model);
         }
 
         public IActionResult Add()
@@ -43,9 +49,9 @@ namespace TCC_Web.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Update()
+        public async Task<IActionResult> Update(Guid id)
         {
-            string apiUrl = "https://localhost:7094/Parking/GetById/" + "A033AD88-5FE7-40C1-B52B-C3C0C625D59E";
+            string apiUrl = "https://localhost:7094/Parking/GetById/" + id.ToString();
             string apiData = await _apiService.GetApiData(apiUrl);
 
             // Desserializar os dados da API em um objeto
