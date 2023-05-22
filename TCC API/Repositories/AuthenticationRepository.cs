@@ -29,11 +29,12 @@ namespace TCC_API.Repositories
 		public ValidationResult Remove(Guid userId)
 		{
 			var validationResult = new ValidationResult(string.Empty);
-			var authenticationDB = _context.Authentication.Find(userId);
+			var authenticationDB = _context.Authentication.Include(e => e.User).Where(e => e.UserId == userId).FirstOrDefault();
 
 			if (authenticationDB != null)
 			{
 				_context.Authentication.Remove(authenticationDB);
+				_context.User.Remove(authenticationDB.User);
 			}
 			else
 			{
