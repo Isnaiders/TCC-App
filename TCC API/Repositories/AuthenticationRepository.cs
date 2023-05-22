@@ -44,7 +44,7 @@ namespace TCC_API.Repositories
 
         public async Task<Authentication> GetById(Guid userId)
         {
-            return await _context.Authentication.Where(e => e.UserId == userId).FirstOrDefaultAsync();
+            return await _context.Authentication.Include(e=> e.User).Where(e => e.UserId == userId).FirstOrDefaultAsync();
         }
 
         public async Task<bool> SaveAllAsync()

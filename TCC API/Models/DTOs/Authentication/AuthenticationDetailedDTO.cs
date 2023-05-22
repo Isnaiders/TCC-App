@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
+using TCC_API.Models.DTOs.Base;
 using TCC_API.Models.DTOs.User;
 
 namespace TCC_API.Models.DTOs.Authentication
 {
-	public class AuthenticationDetailedDTO
+	public class AuthenticationDetailedDTO : BaseDTO
 	{
 		public Guid UserId { get; set; }
 		[Required]

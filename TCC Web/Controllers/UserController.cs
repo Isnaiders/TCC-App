@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Diagnostics;
 using TCC_Web.Models;
+using TCC_Web.Models.DTOs.Parking;
 using TCC_Web.Models.DTOs.User;
 using TCC_Web.Models.Entities.Authentication;
 using TCC_Web.Models.Entities.Parking;
@@ -60,6 +61,35 @@ namespace TCC_Web.Controllers
 			if (message == "Usuário cadastrado com sucesso!")
 			{
 				return RedirectToAction("Index", "Home");
+			}
+
+			return View(model);
+		}
+
+		public async Task<IActionResult> AuthenticationUpdate(Guid id)
+		{
+			string apiUrl = "https://localhost:7094/Authentication/GetById/" + id.ToString();
+			string apiData = await _apiService.GetApiData(apiUrl);
+
+			// Desserializar os dados da API em um objeto
+			var model = JsonConvert.DeserializeObject<AuthenticationDTO>(apiData);
+
+			return View(model);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> AuthenticationUpdate(AuthenticationDTO model)
+		{
+			model.UserName = model.User.Email;
+			string postBody = JsonConvert.SerializeObject(model);
+
+			string apiUrl = "https://localhost:7094/Authentication/Update";
+			string message = await _apiService.PutApiData(apiUrl, postBody);
+
+			// Desserializar os dados da API em um objeto
+			if (message == "Usuário alterado com sucesso!")
+			{
+				return RedirectToAction("Index");
 			}
 
 			return View(model);

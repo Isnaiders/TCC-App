@@ -29,7 +29,7 @@ namespace TCC_API.Controllers
 				return NotFound("Usuário não encontrado.");
 			}
 
-			var authenticationDTO = _mapper.Map<Authentication>(authenticationDB);
+			var authenticationDTO = _mapper.Map<AuthenticationDetailedDTO>(authenticationDB);
 			return Ok(authenticationDTO);
 		}
 
