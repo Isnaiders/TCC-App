@@ -4,7 +4,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<table id="table">
+		<table id="gridTable" data-toggle="table" data-side-pagination="server" data-pagination="true" data-page-size="25" data-show-refresh="true" data-show-columns="true" data-show-columns-toggle-all="true">
 			<thead>
 				<tr>
 					<th data-field="Id">ID</th>
@@ -19,13 +19,45 @@
 </div>
 
 <script>
+	$(function () {
+		$('#gridTable').bootstrapTable({
+			columns: [{
+				field: 'Id',
+				title: 'ID'
+			}, {
+				field: 'Name',
+				title: 'Nome'
+			}, {
+				field: 'Address',
+				title: 'Endereço'
+			}, {
+				field: 'AddressNumber',
+				title: 'Número'
+			}, {
+				field: 'AddressComplement',
+				title: 'Complemento'
+			}],
+			ajax: function (params) {
+				gridRequest(params);
+			}
+		});
+	});
+
+	function displayActionsColumn(show) {
+	// Função para exibir/ocultar a coluna de ações
+	}
+
+	function showTooltips() {
+	// Função para exibir tooltips
+	}
+
 	function gridRequest(params) {
 		$.ajax({
 			url: '@Url.Action("LoadGridListAsync")',
 			type: "POST",
 			dataType: "json",
 			contentType: "application/json; charset=utf-8",
-			data: '{gridDataParams:' + JSON.stringify(params.data) + '}',
+			data: JSON.stringify({ gridDataParams: params.data }),
 			success: function (result) {
 				params.success({
 					total: result.Total,
