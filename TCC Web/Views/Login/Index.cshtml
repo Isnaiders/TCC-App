@@ -1,16 +1,29 @@
-﻿@{
+﻿@using TCC_Web.Models;
+
+
+@model LoginModel
+@{
     Layout = "_LogedOutLayout";
     ViewData["Title"] = "Login";
 }
 
-<form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Login:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1">
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Senha:</label>
-    <input type="password" class="form-control" id="password">
-  </div>
-  <button type="submit" class="btn btn-primary">Entrar</button>
+<form asp-controller="Login" asp-action="Login" method="post">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Email*</label>
+                @Html.TextBoxFor(m => m.UserName, new { Class = "form-control", Placeholder = "Email" })
+                @Html.ValidationMessageFor(m => m.UserName, "", new { Class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Senha *</label>
+                @Html.TextBoxFor(m => m.Password, new { Class = "form-control", Placeholder = "Senha", type = "password" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { Class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary">Entrar</button>
 </form>
