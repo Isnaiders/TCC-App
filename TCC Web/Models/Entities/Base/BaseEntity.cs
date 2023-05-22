@@ -9,6 +9,7 @@ namespace TCC_Web.Models.Entities.Base
     {
         public BaseEntity()
         {
+			Id = Guid.NewGuid();
 			SystemStatus = SystemStatusType.Active;
 			ValidationResult = new ValidationResult("");
 			WhenCreated = DateTime.UtcNow;
