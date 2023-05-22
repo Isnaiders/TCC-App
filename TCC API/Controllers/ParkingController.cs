@@ -81,8 +81,8 @@ namespace TCC_API.Controllers
             parkingDB.Latitude = parkingDTO.Latitude;
             parkingDB.Longitude = parkingDTO.Longitude;
             parkingDB.LocationType = parkingDTO.LocationType;
-            parkingDB.SystemStatus = parkingDTO.SystemStatus;
             parkingDB.WhenUpdated = DateTime.UtcNow;
+            parkingDB.SystemStatus = parkingDTO.SystemStatus;
 
             _parkingRepository.Update(parkingDB);
 

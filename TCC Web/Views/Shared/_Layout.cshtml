@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TCC_Web.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/jquery.dataTables.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap-table/dist/css/bootstrap-table.min.css" asp-append-version="true" />
 </head>
 <body>
     <header>
@@ -24,13 +24,16 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Página Inicial</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Parking" asp-action="View">Visualizar Estacionamento</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Parking" asp-action="Index">Visualizar Estacionamentos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Parking" asp-action="Add">Adicionar Estacionamento</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Parking" asp-action="Update">Atualizar Estacionamento</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Parking" asp-action="CarList">Visualizar Carros</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Parking" asp-action="CarAdd">Adicionar Carro</a>
@@ -57,7 +60,9 @@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/dataTables.dataTables.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap-table/dist/js/vue.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap-table/dist/js/bootstrap-table.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap-table/dist/js/bootstrap-table-vue.min.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
