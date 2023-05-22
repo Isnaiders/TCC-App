@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using TCC_Web.Models.DTOs.Parking;
 using TCC_Web.Models.Entities.Parking;
 using TCC_Web.Models.Entities.User;
 using TCC_Web.Services;
@@ -44,10 +45,21 @@ namespace TCC_Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Parking model)
+        public async Task<IActionResult> Add(Parking model)
         {
-            return View(model);
-        }
+			string postBody = JsonConvert.SerializeObject(model);
+
+			string apiUrl = "https://localhost:7094/Parking/Add";
+			string message = await _apiService.PostApiData(apiUrl, postBody);
+
+			// Desserializar os dados da API em um objeto
+			if (message == "Estacionamento cadastrado com sucesso!")
+			{
+				return RedirectToAction("Index");
+			}
+
+			return View(model);
+		}
 
         public async Task<IActionResult> Update(Guid id)
         {
@@ -55,14 +67,25 @@ namespace TCC_Web.Controllers
             string apiData = await _apiService.GetApiData(apiUrl);
 
             // Desserializar os dados da API em um objeto
-            Parking model = JsonConvert.DeserializeObject<Parking>(apiData);
+            var model = JsonConvert.DeserializeObject<ParkingDetailedDTO>(apiData);
 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult ParkingUpdate(Parking model)
+        public async Task<IActionResult> Update(ParkingDetailedDTO model)
         {
+            string postBody = JsonConvert.SerializeObject(model);
+
+			string apiUrl = "https://localhost:7094/Parking/Update";
+            string message = await _apiService.PutApiData(apiUrl, postBody);
+
+            // Desserializar os dados da API em um objeto
+            if (message == "Estacionamento alterado com sucesso!")
+            {
+                return RedirectToAction("Index");
+            }
+
             return View(model);
         }
 

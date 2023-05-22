@@ -7,6 +7,17 @@ namespace TCC_Web.Models.DTOs.Parking
 {
 	public class ParkingDetailedDTO : BaseDTO
 	{
+		public ParkingDetailedDTO()
+		{
+			Id = Guid.NewGuid();
+			CountryId = Guid.NewGuid();
+			StateId = Guid.NewGuid();
+			CityId = Guid.NewGuid();
+			NeighborhoodId = Guid.NewGuid();
+			Latitude = 10;
+			Longitude = 10;
+		}
+
 		[Required]
 		[StringLength(255)]
 		public string Name { get; set; }

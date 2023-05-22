@@ -7,13 +7,20 @@ namespace TCC_Web.Models.Entities.Parking
 {
     public class Parking : BaseEntity<Guid>
     {
-        public Parking()
+        public Parking() : base()
         {
             ParkingOpeningHour = new HashSet<ParkingOpeningHour>();
             ParkingReservation = new HashSet<ParkingReservation>();
             ParkingReservationHistory = new HashSet<ParkingReservationHistory>();
             Vacancy = new HashSet<Vacancy>();
-        }
+			Id = Guid.NewGuid();
+			CountryId = Guid.NewGuid();
+			StateId = Guid.NewGuid();
+			CityId = Guid.NewGuid();
+			NeighborhoodId = Guid.NewGuid();
+			Latitude = 10;
+			Longitude = 10;
+		}
 
         [Required]
         [StringLength(255)]
