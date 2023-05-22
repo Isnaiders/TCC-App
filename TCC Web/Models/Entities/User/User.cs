@@ -8,7 +8,7 @@ namespace TCC_Web.Models.Entities.User
     {
         public User()
         {
-            Authentication = new HashSet<Authentication.Authentication>();
+            Authentication = new Entities.Authentication.Authentication();
         }
 
         [Required]
@@ -25,6 +25,6 @@ namespace TCC_Web.Models.Entities.User
         public string LicenseDrive { get; set; }
 
         [InverseProperty("User")]
-        public virtual ICollection<Authentication.Authentication> Authentication { get; set; }
+        public Authentication.Authentication Authentication { get; set; }
     }
 }
