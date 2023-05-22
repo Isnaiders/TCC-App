@@ -51,14 +51,14 @@
 					<div class="col-md-12">
 						<div class="form-group">
 							<label>Data de Nascimento *</label>
-							@Html.TextBoxFor(m => m.User.BirthDate, new { Class = "form-control", Placeholder = "Data de Nascimento" })
+							@Html.TextBoxFor(m => m.User.BirthDate, new { Class = "form-control", Placeholder = "Data de Nascimento", type = "datetime-local" })
 							@Html.ValidationMessageFor(m => m.User.BirthDate, "", new { Class = "text-danger" })
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Senha *</label>
-							@Html.TextBoxFor(m => m.Password, new { Class = "form-control", Placeholder = "Senha" })
+							@Html.TextBoxFor(m => m.Password, new { Class = "form-control", Placeholder = "Senha", type = "password" })
 							@Html.ValidationMessageFor(m => m.Password, "", new { Class = "text-danger" })
 						</div>
 					</div>

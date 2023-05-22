@@ -83,7 +83,7 @@
 					text: 'Adicionar usuário',
 					icon: 'fa-solid fa-user-plus fa-flip-horizontal',
 					event: function () {
-						location.href = '@Url.Action("Add")';
+						location.href = '@Url.Action("AuthenticationAdd")';
 					},
 					attributes: {
 						title: 'Adicionar um novo usuário'
@@ -93,7 +93,7 @@
 		}
 
 		function redirectToUpdate(id) {
-			location.href = '@Url.Action("Update")/' + id;
+			location.href = '@Url.Action("AuthenticationUpdate")/' + id;
 		}
 
 		function redirectToRemove(id) {

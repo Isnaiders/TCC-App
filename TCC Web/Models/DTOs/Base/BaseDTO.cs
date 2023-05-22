@@ -10,6 +10,7 @@ namespace TCC_Web.Models.DTOs.Base
             SystemStatus = SystemStatusType.Active;
             WhenCreated = DateTime.UtcNow;
         }
+
         #region Base Properties
         public Guid Id { get; set; }
         public DateTime WhenCreated { get; set; }
