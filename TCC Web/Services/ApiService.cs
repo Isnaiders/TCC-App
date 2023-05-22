@@ -62,5 +62,21 @@ namespace TCC_Web.Services
 				throw new HttpRequestException($"Erro na requisição: {response.StatusCode}");
 			}
 		}
+
+		public async Task<string> DeleteApi(string apiUrl)
+		{
+			HttpResponseMessage response = await _httpClient.DeleteAsync(apiUrl);
+
+			if (response.IsSuccessStatusCode)
+			{
+				string data = await response.Content.ReadAsStringAsync();
+				return data;
+			}
+			else
+			{
+				// Tratar o erro de acordo com suas necessidades
+				throw new HttpRequestException($"Erro na requisição: {response.StatusCode}");
+			}
+		}
 	}
 }

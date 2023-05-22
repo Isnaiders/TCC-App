@@ -134,6 +134,14 @@ namespace TCC_Web.Controllers
 			return View(model);
 		}
 
+		public async Task<IActionResult> Remove(Guid id)
+		{
+			string apiUrl = "https://localhost:7094/Parking/Remove/" + id.ToString();
+			string message = await _apiService.DeleteApi(apiUrl);
+
+			return RedirectToAction("Index");
+		}
+
 		public IActionResult CarAdd()
 		{
 			var model = new Car();
