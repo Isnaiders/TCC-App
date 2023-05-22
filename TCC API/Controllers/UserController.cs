@@ -59,15 +59,22 @@ namespace TCC_API.Controllers
         [HttpPut("Update")]
         public async Task<ActionResult> UpdateUser(UserDetailedDTO userDTO)
         {
-            var exists = _userRepository.Exists(userDTO.Id);
+            var userDB = await _userRepository.GetById(userDTO.Id);
 
-            if (!exists)
+            if (userDB == null)
             {
                 return BadRequest("Usuário não encontrado.");
             }
 
-            var userDB = _mapper.Map<User>(userDTO);
-            _userRepository.Update(userDB);
+            userDB.Name = userDTO.Name;
+            userDB.Type = userDTO.Type;
+			userDB.Email = userDTO.Email;
+            userDB.BirthDate = userDTO.BirthDate;
+            userDB.LicenseDrive = userDTO.LicenseDrive;
+            userDB.WhenUpdated = DateTime.UtcNow;
+            userDB.SystemStatus = userDTO.SystemStatus;
+
+			_userRepository.Update(userDB);
 
             if (await _userRepository.SaveAllAsync())
             {

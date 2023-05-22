@@ -58,14 +58,32 @@ namespace TCC_API.Controllers
         [HttpPut("Update")]
         public async Task<ActionResult> UpdateParking(ParkingDetailedDTO parkingDTO)
         {
-            var exists = _parkingRepository.Exists(parkingDTO.Id);
+            var parkingDB = await _parkingRepository.GetById(parkingDTO.Id);
 
-            if (!exists)
+            if (parkingDB == null)
             {
                 return BadRequest("Estacionamento não encontrado.");
             }
 
-            var parkingDB = _mapper.Map<Parking>(parkingDTO);
+            parkingDB.Name = parkingDTO.Name;
+            parkingDB.PostalCode = parkingDTO.PostalCode;
+            //parkingDB.CountryId = parkingDTO.CountryId;
+            parkingDB.CountryName = parkingDTO.CountryName;
+            //parkingDB.StateId = parkingDTO.StateId;
+            parkingDB.StateName = parkingDTO.StateName;
+            //parkingDB.CityId = parkingDTO.CityId;
+            parkingDB.CityName = parkingDTO.CityName;
+            //parkingDB.NeighborhoodId = parkingDTO.NeighborhoodId;
+            parkingDB.NeighborhoodName = parkingDTO.NeighborhoodName;
+            parkingDB.Address = parkingDTO.Address;
+            parkingDB.AddressNumber = parkingDTO.AddressNumber;
+            parkingDB.AddressComplement = parkingDTO.AddressComplement;
+            parkingDB.Latitude = parkingDTO.Latitude;
+            parkingDB.Longitude = parkingDTO.Longitude;
+            parkingDB.LocationType = parkingDTO.LocationType;
+            parkingDB.SystemStatus = parkingDTO.SystemStatus;
+            parkingDB.WhenUpdated = DateTime.UtcNow;
+
             _parkingRepository.Update(parkingDB);
 
             if (await _parkingRepository.SaveAllAsync())
