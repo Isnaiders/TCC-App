@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using TCC_Web.Models.DTOs.Parking;
-using TCC_Web.Models.Entities.Parking;
 using TCC_Web.Models.Entities.User;
 using TCC_Web.Services;
 
@@ -85,13 +84,13 @@ namespace TCC_Web.Controllers
 
 		public IActionResult Add()
 		{
-			var model = new Parking();
+			var model = new ParkingDetailedDTO();
 
 			return View(model);
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Add(Parking model)
+		public async Task<IActionResult> Add(ParkingDetailedDTO model)
 		{
 			string postBody = JsonConvert.SerializeObject(model);
 
