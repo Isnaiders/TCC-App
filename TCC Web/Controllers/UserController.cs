@@ -2,6 +2,8 @@
 using Newtonsoft.Json;
 using System.Diagnostics;
 using TCC_Web.Models;
+using TCC_Web.Models.DTOs.User;
+using TCC_Web.Models.Entities.Authentication;
 using TCC_Web.Models.Entities.Parking;
 using TCC_Web.Models.Entities.User;
 using TCC_Web.Services;
@@ -21,26 +23,41 @@ namespace TCC_Web.Controllers
 
 		public async Task<IActionResult> Index()
 		{
-			return View();
+			var userList = new List<UserDetailedDTO>();
+			string apiUrl = "https://localhost:7094/User/GetAll";
+			try
+			{
+				string apiData = await _apiService.GetApiData(apiUrl);
+				// Desserializar os dados da API em um objeto
+				userList = JsonConvert.DeserializeObject<List<UserDetailedDTO>>(apiData);
+			}
+			catch (Exception ex)
+			{
+				TempData["ErrorMessage"] = "Ocorreu um erro ao obter os dados do banco de dados: " + ex.Message;
+				return View(userList);
+			}
+
+			return View(userList);
 		}
 
-		public IActionResult Add()
+		public IActionResult AuthenticationAdd()
 		{
-			var model = new User();
+			var model = new AuthenticationDTO();
 
 			return View(model);
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Add(User model)
+		public async Task<IActionResult> AuthenticationAdd(AuthenticationDTO model)
 		{
+			model.UserName = model.User.Email;
 			string postBody = JsonConvert.SerializeObject(model);
 
-			string apiUrl = "https://localhost:7094/User/Add";
+			string apiUrl = "https://localhost:7094/Authentication/Add";
 			string message = await _apiService.PostApiData(apiUrl, postBody);
 
 			// Desserializar os dados da API em um objeto
-			if (message == "Estacionamento cadastrado com sucesso!")
+			if (message == "Usuário cadastrado com sucesso!")
 			{
 				return RedirectToAction("Index", "Home");
 			}

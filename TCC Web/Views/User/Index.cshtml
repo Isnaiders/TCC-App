@@ -1,13 +1,14 @@
-﻿@using TCC_Web.Models.DTOs.Parking;
+﻿@using TCC_Web.Models.DTOs.User;
+
 @{
-	ViewData["Title"] = "Visualizar os Estacionamentos";
+	ViewData["Title"] = "Visualizar os Usuários";
 }
 
-@model List<ParkingDetailedDTO>
+@model List<UserDetailedDTO>
 
 <div class="row">
 	<div class="col-md-12">
-		<table id="parkingTable"
+		<table id="userTable"
 			   data-toggle="table"
 			   data-pagination="true"
 			   data-search="true"
@@ -20,21 +21,23 @@
 			<thead>
 				<tr>
 					<th data-field="Name" data-sortable="true">Nome</th>
-					<th data-field="Address" data-sortable="true">Endereço</th>
-					<th data-field="AddressComplement" data-sortable="true">Complemento do Endereço</th>
+					<th data-field="Type" data-align="center" data-sortable="true">Tipo</th>
+					<th data-field="Email" data-sortable="true">Email</th>
+					<th data-field="LicenseDrive" data-sortable="true">CNH</th>
 					<th data-field="Actions" data-align="center">Ações</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach (var parking in Model)
+				@foreach (var user in Model)
 				{
 					<tr>
 						<td>
-							<div><a href="@Url.Action("View", new { id = parking.Id})">@parking.Name</a></div>
-							<div><small>@parking.Id</small></div>
+							<div><a href="@Url.Action("View", new { id = user.Id})">@user.Name</a></div>
+							<div><small>@user.Id</small></div>
 						</td>
-						<td>@string.Format("{0}, {1}", parking.Address, parking.AddressNumber)</td>
-						<td>@parking.AddressComplement</td>
+						<td>@user.Type.ToString()</td>
+						<td>@user.Email</td>
+						<td>@user.LicenseDrive</td>
 						<td>
 							<div class="dropdown">
 								<button class="btn btn-secondary dropdown-toggle"
@@ -44,8 +47,8 @@
 									Ações
 								</button>
 								<ul class="dropdown-menu">
-									<li><button class="dropdown-item" type="button" onclick="redirectToUpdate('@parking.Id')">Editar</button></li>
-									<li><button class="dropdown-item" type="button" onclick="redirectToRemove('@parking.Id')">Remover</button></li>
+									<li><button class="dropdown-item" type="button" onclick="redirectToUpdate('@user.Id')">Editar</button></li>
+									<li><button class="dropdown-item" type="button" onclick="redirectToRemove('@user.Id')">Remover</button></li>
 								</ul>
 							</div>
 						</td>
@@ -76,21 +79,21 @@
 
 		function buttons() {
 			return {
-				btnParkingAdd: {
-					text: 'Adicionar estacionamento',
-					icon: 'fa-solid fa-plus',
+				btnUserAdd: {
+					text: 'Adicionar usuário',
+					icon: 'fa-solid fa-user-plus fa-flip-horizontal',
 					event: function () {
-						location.href = '@Url.Action("Add")';
+						location.href = '@Url.Action("AuthenticationAdd")';
 					},
 					attributes: {
-						title: 'Adicionar um novo estacionamento'
+						title: 'Adicionar um novo usuário'
 					}
 				}
 			}
 		}
 
 		function redirectToUpdate(id) {
-			location.href = '@Url.Action("Update")/' + id;
+			location.href = '@Url.Action("AuthenticationUpdate")/' + id;
 		}
 
 		function redirectToRemove(id) {

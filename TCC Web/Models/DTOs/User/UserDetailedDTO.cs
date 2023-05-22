@@ -5,7 +5,11 @@ namespace TCC_Web.Models.DTOs.User
 {
 	public class UserDetailedDTO : BaseDTO
 	{
-		[Required]
+        public UserDetailedDTO() : base()
+        {
+            
+        }
+        [Required]
 		[StringLength(255)]
 		public string Name { get; set; }
 
