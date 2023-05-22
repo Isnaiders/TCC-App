@@ -1,167 +1,80 @@
 ﻿@{
-    ViewData["Title"] = "Página Inicial";
+	ViewData["Title"] = "Visualizar os Estacionamentos";
 }
 
-<div class="text-center">
-	<h1 class="display-4">Bem vindo</h1>
-	<h3>Integrantes</h3>
-</div>
-
-<div>
-	<div class="row">
-		<div class="col-lg-4 col-md-6 col-sm-12">
-			<div class="ibox">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="image-container" style="border-radius: 100%;">
-							<img style="height: 100%; width: 100%;" src="/img/santosDoSavoy.png" id="Felipe" />
-						</div>
-						<hr />
-						<div class="text-center">
-							<div class="row">
-								<span class="col-md-12">
-									Felipe Santos - RA: F320AC3
-								</span>
-							</div>
-							<div class="row">
-								<small class="col-md-12">
-									Função: Front-end
-								</small>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-lg-4 col-md-6 col-sm-12">
-			<div class="ibox">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="image-container" style="border-radius: 50%">
-							<img style="height: 100%; width: 100%;" src="/img/giovanna.png" id="henricao" />
-
-						</div>
-						<hr />
-						<div class="text-center">
-							<div class="row">
-								<span class="col-md-12">
-									Giovanna Lacerda - RA: N646EG3
-								</span>
-							</div>
-							<div class="row">
-								<small class="col-md-12">
-									Função: Documentação e Formatação
-								</small>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-lg-4 col-md-6 col-sm-12">
-			<div class="ibox">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="image-container" style="border-radius: 50%">
-							<img style="height: 100%; width: 100%;" src="/img/isnaider.png" id="Henricao" />
-
-						</div>
-						<hr />
-						<div class="text-center">
-							<div class="row">
-								<span class="col-md-12">
-									Henrique Matos - RA: N6143H1
-								</span>
-							</div>
-							<div class="row">
-								<small class="col-md-12">
-									Função: Back-end
-								</small>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-lg-4 col-md-6 col-sm-12">
-			<div class="ibox">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="image-container" style="border-radius: 50%">
-							<img style="height: 100%; width: 100%;" src="/img/bigmouth.png" id="henricao" />
-
-						</div>
-						<hr />
-						<div class="text-center">
-							<div class="row">
-								<span class="col-md-12">
-									Lucas Gois - RA: F22BCH4
-								</span>
-							</div>
-							<div class="row">
-								<small class="col-md-12">
-									Função: Documentação
-								</small>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-lg-4 col-md-6 col-sm-12">
-			<div class="ibox">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="image-container" style="border-radius: 50%">
-							<img style="height: 100%; width: 100%;" src="/img/sammy.png" id="Samara" />
-
-						</div>
-						<hr />
-						<div class="text-center">
-							<div class="row">
-								<span class="col-md-12">
-									Samara Cristina - RA: F209440
-								</span>
-							</div>
-							<div class="row">
-								<small class="col-md-12">
-									Função: Documentação
-								</small>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-lg-4 col-md-6 col-sm-12">
-			<div class="ibox">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="image-container" style="border-radius: 50%">
-							<img style="height: 100%; width: 100%;" src="/img/aguia.png" id="Vitor" />
-
-						</div>
-						<hr />
-						<div class="text-center">
-							<div class="row">
-								<span class="col-md-12">
-									Vitor Hugo - RA: F3137D9
-								</span>
-							</div>
-							<div class="row">
-								<small class="col-md-12">
-									Função: Front-End & Back-end
-								</small>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+<div class="row">
+	<div class="col-md-12">
+		<table id="gridTable" data-toggle="table" data-side-pagination="server" data-pagination="true" data-page-size="25" data-show-refresh="true" data-show-columns="true" data-show-columns-toggle-all="true">
+			<thead>
+				<tr>
+					<th data-field="Id">ID</th>
+					<th data-field="Name">Nome</th>
+					<th data-field="Address">Endereço</th>
+					<th data-field="AddressNumber">Número</th>
+					<th data-field="AddressComplement">Complemento</th>
+				</tr>
+			</thead>
+		</table>
 	</div>
 </div>
+
+<script>
+	$(function () {
+		$('#gridTable').bootstrapTable({
+			columns: [{
+				field: 'Id',
+				title: 'ID'
+			}, {
+				field: 'Name',
+				title: 'Nome'
+			}, {
+				field: 'Address',
+				title: 'Endereço'
+			}, {
+				field: 'AddressNumber',
+				title: 'Número'
+			}, {
+				field: 'AddressComplement',
+				title: 'Complemento'
+			}],
+			ajax: function (params) {
+				gridRequest(params);
+			}
+		});
+	});
+
+	function displayActionsColumn(show) {
+	// Função para exibir/ocultar a coluna de ações
+	}
+
+	function showTooltips() {
+	// Função para exibir tooltips
+	}
+
+	function gridRequest(params) {
+		$.ajax({
+			url: '@Url.Action("LoadGridListAsync")',
+			type: "POST",
+			dataType: "json",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({ gridDataParams: params.data }),
+			success: function (result) {
+				params.success({
+					total: result.Total,
+					rows: result.Rows
+				});
+				displayActionsColumn(result.ShowActionsColumn);
+				showTooltips();
+			},
+			error: function (obj, e) {
+				swal({
+					title: 'Erro ao carregar os dados',
+					text: 'Recarregar a página pode resolver o problema',
+					type: "error",
+					confirmButtonColor: "#DD6B55",
+					confirmButtonText: "Ok"
+				});
+			}
+		});
+	};
+</script>
