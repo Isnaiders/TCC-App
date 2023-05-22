@@ -53,7 +53,7 @@ namespace TCC_Web.Controllers
 			model.UserName = model.User.Email;
 			string postBody = JsonConvert.SerializeObject(model);
 
-			string apiUrl = "https://localhost:7094/User/AuthenticationAdd";
+			string apiUrl = "https://localhost:7094/Authentication/Add";
 			string message = await _apiService.PostApiData(apiUrl, postBody);
 
 			// Desserializar os dados da API em um objeto
