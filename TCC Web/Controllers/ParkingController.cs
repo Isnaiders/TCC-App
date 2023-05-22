@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using TCC_Web.Models.DTOs.Parking;
 using TCC_Web.Models.Entities.Parking;
 using TCC_Web.Models.Entities.User;
 using TCC_Web.Services;
@@ -31,7 +32,7 @@ namespace TCC_Web.Controllers
             string apiData = await _apiService.GetApiData(apiUrl);
 
             // Desserializar os dados da API em um objeto
-            Parking model = JsonConvert.DeserializeObject<Parking>(apiData);
+            ParkingDetailedDTO model = JsonConvert.DeserializeObject<ParkingDetailedDTO>(apiData);
 
             return View(model);
         }
