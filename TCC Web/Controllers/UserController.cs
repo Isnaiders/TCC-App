@@ -107,5 +107,16 @@ namespace TCC_Web.Controllers
 
 			return RedirectToAction("Index");
 		}
+
+		public async Task<IActionResult> View(Guid id)
+		{
+			string apiUrl = "https://localhost:7094/Authentication/GetById/" + id.ToString();
+			string apiData = await _apiService.GetApiData(apiUrl);
+
+			// Desserializar os dados da API em um objeto
+			var model = JsonConvert.DeserializeObject<AuthenticationDTO>(apiData);
+
+			return View(model);
+		}
 	}
 }
