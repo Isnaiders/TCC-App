@@ -15,10 +15,12 @@ namespace TCC_API.Repositories
 			_context = context;
 		}
 
-		public void Add(Authentication authentication)
+		public string Add(Authentication authentication)
 		{
-			if (_context.Authentication.Any(e => e.UserName != authentication.UserName))
-				_context.Authentication.Add(authentication);
+			if (_context.Authentication.Any(e => e.UserName == authentication.UserName))
+				return "Email já existe no sistema";
+			_context.Authentication.Add(authentication);
+			return "Cadastro concluído com sucesso";
 		}
 
 		public void Update(Authentication authentication)

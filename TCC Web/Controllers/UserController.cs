@@ -52,6 +52,12 @@ namespace TCC_Web.Controllers
 		public async Task<IActionResult> AuthenticationAdd(AuthenticationDTO model)
 		{
 			model.UserName = model.User.Email;
+			if (model.User.BirthDate > DateTime.UtcNow.AddYears(-18).AddSeconds(-10))
+			{
+				TempData["ErrorMessage"] = "O usuário deve ser maior de idade (18 anos)";
+				return View(model);
+			}
+
 			string postBody = JsonConvert.SerializeObject(model);
 
 			string apiUrl = "https://localhost:7094/Authentication/Add";
@@ -81,6 +87,12 @@ namespace TCC_Web.Controllers
 		public async Task<IActionResult> AuthenticationUpdate(AuthenticationDTO model)
 		{
 			model.UserName = model.User.Email;
+			if (model.User.BirthDate > DateTime.UtcNow.AddYears(-18).AddSeconds(-10))
+			{
+				TempData["ErrorMessage"] = "O usuário deve ser maior de idade (18 anos)";
+				return View(model);
+			}
+
 			string postBody = JsonConvert.SerializeObject(model);
 
 			string apiUrl = "https://localhost:7094/Authentication/Update";

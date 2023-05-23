@@ -6,7 +6,7 @@ namespace TCC_API.Interfaces.Repositories
 	public interface IAuthenticationRepository
 	{
 		Task<Authentication> GetById(Guid userId);
-		void Add(Authentication authentication);
+		string Add(Authentication authentication);
 		void Update(Authentication authentication);
 		ValidationResult Remove(Guid userId);
 		Task<bool> SaveAllAsync();
