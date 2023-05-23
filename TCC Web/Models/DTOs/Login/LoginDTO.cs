@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TCC_Web.Models
+namespace TCC_Web.Models.DTOs.Login
 {
-    public class LoginModel
+    public class LoginDTO
     {
         [Required(ErrorMessage = "Digite o email")]
         public string UserName { get; set; }

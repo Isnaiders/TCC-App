@@ -51,7 +51,6 @@ namespace TCC_Web.Controllers
 			string apiUrl = "https://localhost:7094/Authentication/Add";
 			string message = await _apiService.PostApiData(apiUrl, postBody);
 
-			// Desserializar os dados da API em um objeto
 			if (message == "Usuário cadastrado com sucesso!")
 			{
 				return RedirectToAction("Index", "Home");
