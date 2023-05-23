@@ -12,11 +12,11 @@ namespace TCC_Web.Models.DTOs.User
 			UserId = User.Id;
         }
 
-        [Required]
+		[Required(ErrorMessage = "Digite o email")]
 		[StringLength(255)]
 		public string UserName { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Digite a senha")]
 		[StringLength(255)]
 		public string Password { get; set; }
 

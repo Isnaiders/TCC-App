@@ -1,12 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Diagnostics;
-using TCC_Web.Models;
-using TCC_Web.Models.DTOs.Parking;
 using TCC_Web.Models.DTOs.User;
-using TCC_Web.Models.Entities.Authentication;
-using TCC_Web.Models.Entities.Parking;
-using TCC_Web.Models.Entities.User;
 using TCC_Web.Services;
 
 namespace TCC_Web.Controllers
@@ -63,7 +57,6 @@ namespace TCC_Web.Controllers
 			string apiUrl = "https://localhost:7094/Authentication/Add";
 			string message = await _apiService.PostApiData(apiUrl, postBody);
 
-			// Desserializar os dados da API em um objeto
 			if (message == "Usuário cadastrado com sucesso!")
 			{
 				return RedirectToAction("Index", "Home");

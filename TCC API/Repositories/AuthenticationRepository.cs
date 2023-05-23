@@ -56,7 +56,7 @@ namespace TCC_API.Repositories
 			return await _context.SaveChangesAsync() > 0;
 		}
 
-		public bool Login(string userName, string password)
+		public async Task<bool> Login(string userName, string password)
 		{
 			return _context.Authentication.Any(e => e.UserName == userName && e.Password == password);
 		}
