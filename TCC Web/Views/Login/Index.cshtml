@@ -3,8 +3,13 @@
 
 @model LoginDTO
 @{
-    Layout = "_LogedOutLayout";
-    ViewData["Title"] = "Login";
+	Layout = "_LogedOutLayout";
+	ViewData["Title"] = "Login";
+	var errorMessage = "";
+	if(TempData["ErrorMessage"] != null)
+	{
+		errorMessage = TempData["ErrorMessage"].ToString();
+	}
 }
 
 <div class="wrapper wrapper-content animated fadeInUp">
@@ -37,6 +42,10 @@
 				</div>
 			</div>
 		</div>
+		@if (errorMessage != null)
+		{
+			<div id="invalidFieldMessage"><p style="color: red"><strong>@errorMessage</strong></p></div>
+		}
 		<div class="ibox" style="margin-top: 10px">
 			<div class="row">
 				<div class="col-sm-12">
@@ -52,15 +61,15 @@
 
 @section scripts {
     <script>
-		$(document).ready(function () {
-			if ('@TempData["ErrorMessage"]' != undefined && '@TempData["ErrorMessage"]' != '' && '@TempData["ErrorMessage"]' != null) {
-				Swal.fire({
-					icon: 'error',
-					title: 'Oops...',
-					text: '@TempData["ErrorMessage"]',
-				});
-			}
-		});
+		//$(document).ready(function () {
+		//	if ('@TempData["ErrorMessage"]' != undefined && '@TempData["ErrorMessage"]' != '' && '@TempData["ErrorMessage"]' != null) {
+		//		Swal.fire({
+		//			icon: 'error',
+		//			title: 'Oops...',
+		//			text: '@TempData["ErrorMessage"]',
+		//		});
+		//	}
+		//});
 
         function reditectToSingUp(){
             location.href = '@Url.Action("SingUp")';

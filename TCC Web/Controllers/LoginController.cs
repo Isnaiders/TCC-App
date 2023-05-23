@@ -28,13 +28,14 @@ namespace TCC_Web.Controllers
 			string apiUrl = "https://localhost:7094/Authentication/Login";
 			try
 			{
+				if(!ModelState.IsValid)
+					return View("Index", model);
+
 				string postBody = JsonConvert.SerializeObject(model);
 				var result = Convert.ToBoolean(await _apiService.PostApiData(apiUrl, postBody));
 
-				if (ModelState.IsValid && result)
-				{
+				if (result)
 					return RedirectToAction("Index", "Home");
-				}
 
 				TempData["ErrorMessage"] = "Usuário ou senha inválidos.";
 
@@ -57,7 +58,14 @@ namespace TCC_Web.Controllers
 		[HttpPost]
 		public async Task<IActionResult> SingUp(AuthenticationDTO model)
 		{
+			if (string.IsNullOrEmpty(model.User.Email) || string.IsNullOrEmpty(model.Password))
+				return View(model);
 			model.UserName = model.User.Email;
+			if (model.User.BirthDate > DateTime.UtcNow.AddYears(-18).AddSeconds(-10))
+			{
+				TempData["ErrorMessage"] = "O usuário deve ser maior de idade (18 anos)";
+				return View(model);
+			}
 			string apiUrl = "https://localhost:7094/Authentication/Add";
 			try
 			{
