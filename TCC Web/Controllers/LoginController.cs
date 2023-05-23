@@ -1,32 +1,47 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using TCC_Web.Models;
+using TCC_Web.Services;
 
 namespace TCC_Web.Controllers
 {
-    public class LoginController : Controller
-    {
-        public IActionResult Index()
-        {
-            return View();
-        }
+	public class LoginController : Controller
+	{
+		private readonly ApiService _apiService;
 
-        [HttpPost]
-        public async Task<IActionResult> Login(LoginModel loginModel)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-                return View("Index");
+		public LoginController(ApiService apiService)
+		{
+			_apiService = apiService;
+		}
 
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"Ops, algo deu errado! Por favor, tente novamente mais tarde: {ex.Message}";
-                throw;
-            }
-        }
-    }
+		public IActionResult Index()
+		{
+			var model = new LoginModel();
+
+			return View(model);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Login(LoginModel model)
+		{
+			string apiUrl = "https://localhost:7094/Authentication/Login";
+			try
+			{
+				string postBody = JsonConvert.SerializeObject(model);
+				var result = Convert.ToBoolean(await _apiService.PostApiData(apiUrl, postBody));
+
+				if (ModelState.IsValid && result)
+				{
+					return RedirectToAction("Index", "Home");
+				}
+
+				return View("Index", model);
+			}
+			catch (Exception ex)
+			{
+				TempData["ErrorMessage"] = "Ocorreu um erro ao obter os dados do banco de dados: " + ex.Message;
+				return View("Index", model);
+			}
+		}
+	}
 }

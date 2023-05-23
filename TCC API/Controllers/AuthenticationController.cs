@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TCC_API.Interfaces.Repositories;
+using TCC_API.Models;
 using TCC_API.Models.DTOs.Authentication;
 using TCC_API.Models.Entities.Authentication;
 
@@ -95,10 +96,10 @@ namespace TCC_API.Controllers
 			return BadRequest("Ocorreu um erro ao remover o usuário.");
 		}
 
-		[HttpGet("Login")]
-		public bool Login(AuthenticationDetailedDTO authenticationDTO)
+		[HttpPost("Login")]
+		public async Task<bool> Login(LoginModel model)
 		{
-			return _authenticationRepository.Login(authenticationDTO.UserName, authenticationDTO.Password);
+			return await _authenticationRepository.Login(model.UserName, model.Password);
 		}
 	}
 }

@@ -1,12 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Diagnostics;
-using TCC_Web.Models;
-using TCC_Web.Models.DTOs.Parking;
 using TCC_Web.Models.DTOs.User;
-using TCC_Web.Models.Entities.Authentication;
-using TCC_Web.Models.Entities.Parking;
-using TCC_Web.Models.Entities.User;
 using TCC_Web.Services;
 
 namespace TCC_Web.Controllers

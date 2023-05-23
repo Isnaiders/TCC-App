@@ -10,6 +10,6 @@ namespace TCC_API.Interfaces.Repositories
 		void Update(Authentication authentication);
 		ValidationResult Remove(Guid userId);
 		Task<bool> SaveAllAsync();
-		bool Login(string userName, string password);
+		Task<bool> Login(string userName, string password);
 	}
 }

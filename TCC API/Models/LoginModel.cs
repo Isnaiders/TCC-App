@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TCC_Web.Models
+namespace TCC_API.Models
 {
     public class LoginModel
     {
