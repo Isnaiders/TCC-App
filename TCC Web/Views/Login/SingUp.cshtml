@@ -4,10 +4,10 @@
 @model LoginDTO
 @{
     Layout = "_LogedOutLayout";
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Sing-Up";
 }
 
-<form asp-controller="Login" asp-action="Login" method="post">
+<form asp-controller="Login" asp-action="SingUp" method="post">
     <div class="ibox">
         <div class="row">
             <div class="col-md-12">
@@ -24,19 +24,9 @@
                     @Html.ValidationMessageFor(m => m.Password, "", new { Class = "text-danger" })
                 </div>
             </div>
-
         </div>
     </div>
     <div class="ibox" style="margin-top: 10px">
-        <button id="singUp" type="button" onclick="reditectToSingUp()" class="btn btn-primary">Cadastrar-se</button>
-        <button type="submit" class="btn btn-primary">Entrar</button>
+        <button type="submit" class="btn btn-primary">Registrar</button>
     </div>
 </form>
-@section scripts {
-    <script>
-        function reditectToSingUp(){
-            location.href = '@Url.Action("SingUp")';
-        }
-
-    </script>
-}
