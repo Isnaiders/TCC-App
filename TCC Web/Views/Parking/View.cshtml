@@ -1,5 +1,4 @@
-﻿@using TCC_Web.Models.Entities.Parking;
-@using TCC_Web.Models.DTOs.Parking;
+﻿@using TCC_Web.Models.DTOs.Parking;
 
 @{
 	ViewData["Title"] = "Visualização do Estacionamento";
@@ -9,92 +8,91 @@
 
 @{
 	var pageShortTitle = Model.Name;
-	//var pageFullTitle = string.Format("{0}: {1}", Model.CustomerInfo.DisplayName, pageShortTitle);
 	var pageFullTitle = string.Format("{0}: {1}", "Estacionamento", pageShortTitle);
 
 	ViewBag.Title = pageFullTitle;
 }
 
 <div class="wrapper wrapper-content animated fadeInUp">
-		<div class="ibox">
-			<a class="collapse-link">
-				<div class="ibox-title">
-					<h5>@pageFullTitle</h5>
-					<div class="ibox-tools">
-						<div type="button" class="btn btn-default btn-circle btn-outline btn-xs"><i class="fa fa-chevron-up"></i></div>
+	<div class="ibox">
+		<a class="collapse-link">
+			<div class="ibox-title">
+				<h5>@pageFullTitle</h5>
+				<div class="ibox-tools">
+					<div type="button" class="btn btn-default btn-circle btn-outline btn-xs"><i class="fa fa-chevron-up"></i></div>
+				</div>
+			</div>
+		</a>
+		<div class="ibox-content">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Nome:</label>
+						@Model.Name
 					</div>
 				</div>
-			</a>
-			<div class="ibox-content">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="form-group">
-							<label>Nome:</label>
-							@Model.Name
-						</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>CEP:</label>
+						@Model.PostalCode
 					</div>
-					<div class="col-md-12">
-						<div class="form-group">
-							<label>CEP:</label>
-							@Model.PostalCode
-						</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Pais:</label>
+						@Model.CountryName
 					</div>
-					<div class="col-md-12">
-						<div class="form-group">
-							<label>Pais:</label>
-							@Model.CountryName
-						</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Estado:</label>
+						@Model.StateName
 					</div>
-					<div class="col-md-12">
-						<div class="form-group">
-							<label>Estado:</label>
-							@Model.StateName
-						</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Cidade:</label>
+						@Model.CityName
 					</div>
-					<div class="col-md-12">
-						<div class="form-group">
-							<label>Cidade:</label>
-							@Model.CityName
-						</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Bairro:</label>
+						@Model.NeighborhoodName
 					</div>
-					<div class="col-md-12">
-						<div class="form-group">
-							<label>Bairro:</label>
-							@Model.NeighborhoodName
-						</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Endereço:</label>
+						@string.Format("{0}, {1}", Model.Address, Model.AddressNumber)
 					</div>
-					<div class="col-md-12">
-						<div class="form-group">
-							<label>Endereço:</label>
-							@string.Format("{0}, {1}", Model.Address, Model.AddressNumber)
-						</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Complemento:</label>
+						@Model.AddressComplement
 					</div>
-					<div class="col-md-12">
-						<div class="form-group">
-							<label>Complemento:</label>
-							@Model.AddressComplement
-						</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Latitude:</label>
+						@Model.Latitude.ToString()
 					</div>
-					<div class="col-md-12">
-						<div class="form-group">
-							<label>Latitude:</label>
-							@Model.Latitude.ToString()
-						</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Longitude:</label>
+						@Model.Longitude.ToString()
 					</div>
-					<div class="col-md-12">
-						<div class="form-group">
-							<label>Longitude:</label>
-							@Model.Longitude.ToString()
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="form-group">
-							<label>Tipo do estacionamento:</label>
-							@Model.LocationType.ToString()
-						</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Tipo do estacionamento:</label>
+						@Model.LocationType.ToString()
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 </div>
 

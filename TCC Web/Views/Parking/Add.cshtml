@@ -1,6 +1,5 @@
 ﻿@using TCC_Web.Models.Base;
 @using TCC_Web.Models.DTOs.Parking;
-@using TCC_Web.Models.Entities.Parking;
 
 @{
 	ViewData["Title"] = "Cadastrar Estacionamento";
@@ -10,7 +9,6 @@
 
 @{
 	var pageShortTitle = "Novo Estacionamento";
-	//var pageFullTitle = string.Format("{0}: {1}", Model.CustomerInfo.DisplayName, pageShortTitle);
 	var pageFullTitle = string.Format("{0}: {1}", "Estacionamento", pageShortTitle);
 
 	ViewBag.Title = pageFullTitle;
@@ -18,7 +16,6 @@
 
 <div class="wrapper wrapper-content animated fadeInUp">
 	<form method="post">
-		@*@Html.HiddenFor(e => e.CustomerInfo.Id)*@
 		<div class="ibox">
 			<a class="collapse-link">
 				<div class="ibox-title">
@@ -38,15 +35,9 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						@*<div class="form-group">
-						<label class="control-label"> Selecione a Localização:</label>
-						<select asp-for="LocationType" id="SelectType" class="drop-select" asp-items="Html.GetEnumSelectList<ParkingLocationType>()"></select>
-						@Html.HiddenFor(m => m.LocationType, Model.LocationType)
-						</div>*@
 						<div class="form-group">
 							<label>Localização do Estacionamento *</label>
 							@Html.DropDownListFor(m => m.LocationType, DropDownListModel.DataEnumerate(Model.LocationType, Model.LocationType.ToString()), new { Class = "form-control" })
-							@*@Html.ValidationMessageFor(m => m.LocationType, "É necessário escolher qual o tipo da localização do estacionamento", new { Class = "text-danger" })*@
 						</div>
 					</div>
 					<div class="col-md-6">
